@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+
+class Vehicle {
+private:
+    int number_tyres;
+    string name;
+    int capacity;
+    int mileage;
+
+public:
+    // Constructor
+    Vehicle(int tyres, string n, int cap, int m)
+        : number_tyres(tyres), name(n), capacity(cap), mileage(m) {
+        cout << "Vehicle constructed" << endl;
+    }
+
+    // Destructor
+    ~Vehicle() {
+        cout << "Vehicle destructed" << endl;
+    }
+
+    void calculateMileage() {
+        cout << "The mileage is: " << mileage << endl;
+    }
+
+    string getName() const {
+        return name;
+    }
+};
+
+class SchoolBus : public Vehicle {
+private:
+    // No additional members needed
+
+public:
+    // Constructor
+    SchoolBus(int tyres, string n, int cap, int m)
+        : Vehicle(tyres, n, cap, m) {
+        cout << "SchoolBus constructed" << endl;
+    }
+
+    // Destructor
+    ~SchoolBus() {
+        cout << "SchoolBus destructed" << endl;
+    }
+
+    void displaySchoolName() {
+        cout << "The name of the school is: " << getName() << endl;
+    }
+};
+
+class Car : public Vehicle {
+private:
+    int number_airbags;
+    int ac_consumption;
+
+public:
+    // Constructor
+    Car(int tyres, string n, int cap, int m, int airbags, int ac)
+        : Vehicle(tyres, n, cap, m), number_airbags(airbags), ac_consumption(ac) {
+        cout << "Car constructed" << endl;
+    }
+
+    // Destructor
+    ~Car() {
+        cout << "Car destructed" << endl;
+    }
+
+    // Additional member functions specific to Car
+};
+
+int main() {
+    // Example usage of constructors and destructors
+    {
+        Car myCar(4, "Toyota", 5, 30, 6, 8);
+        myCar.calculateMileage();
+
+        SchoolBus myBus(6, "XYZ School", 50, 20);
+        myBus.displaySchoolName();
+    }
+
+    // Objects go out of scope here, destructors are called automatically
+
+    return 0;
+}
